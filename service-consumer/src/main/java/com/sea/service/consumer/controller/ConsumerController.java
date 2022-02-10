@@ -13,6 +13,8 @@ public class ConsumerController {
 
     @Value("${useLocalCache:false}")
     private boolean useLocalCache;
+//    @Value("${prop2:default}")
+//    private String prop2;
 
     @Autowired
     ProviderService providerService;
@@ -27,4 +29,9 @@ public class ConsumerController {
     public boolean getProp() {
         return useLocalCache;
     }
+
+//    @GetMapping("/getProp2")
+//    public String getProp2() {
+//        return prop2;
+//    }
 }
