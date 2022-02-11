@@ -1,11 +1,12 @@
 package com.sea.service.consumer.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.sea.service.consumer.bean.User;
 import com.sea.service.consumer.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RefreshScope
@@ -20,8 +21,8 @@ public class ConsumerController {
     ProviderService providerService;
 
     @GetMapping("/hi-feign")
-    public String hiFeign() {
-        return providerService.hi("feign");
+    public String hiFeign(@RequestParam(value = "name", required = false) String name) {
+        return providerService.hi(name);
     }
 
 
@@ -34,4 +35,9 @@ public class ConsumerController {
 //    public String getProp2() {
 //        return prop2;
 //    }
+
+    @PostMapping("/getJson")
+    public String getProp(@RequestBody User user) {
+        return user == null ? "" : JSON.toJSONString(user);
+    }
 }
