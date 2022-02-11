@@ -17,16 +17,24 @@ spring:
           enabled: false
           lowerCaseServiceId: true
       routes:
+          #路由的ID，没有固定规则但要求唯一，建议配合服务名
         - id: provider
+          #匹配后提供服务的路由地址，uri的协议为lb，表示启用Gateway的负载均衡功能 非集群的话直接写请求地址，例如http://localhost:8763/hi-feign
           uri: lb://service-provider
+          #断言 匹配规则
           predicates:
-            - Path=/service-provider/**
+            - Path=/provider/**   #根据路径匹配
+            #- After=2020-02-21T15:51:37.485+08:00[Asia/Shanghai] #根据时间匹配
+            #- Cookie=username,zzyy
+            #- Header=X-Request-Id, \d+  # 请求头要有X-Request-Id属性并且值为整数的正则表达式
           filters:
+            #StripPrefix网关过滤器工厂采用一个参数，StripPrefix参数表示在将请求发送到下游之前从请求中剥离的路径个数
+            #例：uri: http://user  Path=/consumer/**   StripPrefix=1   则请求http://localhost:5000/consumer/hi在通过网关后真实的请求是http://user/hi
             - StripPrefix=1
         - id: consumer
           uri: lb://service-consumer
           predicates:
-            - Path=/service-consumer/**
+            - Path=/consumer/**
           filters:
             - StripPrefix=1
     sentinel:

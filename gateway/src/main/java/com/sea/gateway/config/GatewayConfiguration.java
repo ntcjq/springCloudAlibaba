@@ -26,6 +26,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * gateway和sentinel结合，创建一个网关分组和网关的限流规则
+ *
+ */
 @Configuration
 public class GatewayConfiguration {
 
