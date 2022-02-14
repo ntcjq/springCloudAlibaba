@@ -3,8 +3,10 @@ package com.sea.gateway.filter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
@@ -51,6 +53,32 @@ public class RequestTimeGatewayFilterFactory extends AbstractGatewayFilterFactor
             );
         };
     }
+
+//    /**
+//     * 上述方法的原始版
+//     */
+//    public GatewayFilter apply(Config config, String a) {
+//        return new GatewayFilter() {
+//            @Override
+//            public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+//                exchange.getAttributes().put(REQUEST_TIME_BEGIN, System.currentTimeMillis());
+//                return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+//                            Long startTime = exchange.getAttribute(REQUEST_TIME_BEGIN);
+//                            if (startTime != null) {
+//                                StringBuilder sb = new StringBuilder(exchange.getRequest().getURI().getRawPath())
+//                                        .append(": ")
+//                                        .append(System.currentTimeMillis() - startTime)
+//                                        .append("ms");
+//                                if (config.isWithParams()) {
+//                                    sb.append(" params:").append(exchange.getRequest().getQueryParams());
+//                                }
+//                                log.info(sb.toString());
+//                            }
+//                        })
+//                );
+//            }
+//        };
+//    }
 
     public static class Config {
 
