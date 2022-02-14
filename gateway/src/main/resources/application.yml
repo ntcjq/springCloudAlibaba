@@ -37,6 +37,7 @@ spring:
             - Path=/consumer/**
           filters:
             - StripPrefix=1
+            - RequestTime=true  #自定义filter，打印请求时间，参数为是否打印请求参数信息
     sentinel:
       transport:
         port: 15000
