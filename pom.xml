@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>provider-api</module>
         <module>service-provider</module>
         <module>service-consumer</module>
         <module>gateway</module>

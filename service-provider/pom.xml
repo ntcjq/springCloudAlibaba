@@ -22,11 +22,24 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.sea</groupId>
+			<artifactId>provider-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 		</dependency>
 
-		<!-- zipkin -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.71</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- zipkin -->
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.cloud</groupId>-->
 <!--			<artifactId>spring-cloud-starter-sleuth</artifactId>-->
