@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "service-provider", contextId = "api")
+/**
+ * 这边可以不写@Fegin注解，把@Fegin写在消费端，消费端写一个interface来extends这个api，然后把@Fegin写在消费端的接口上
+ */
+@FeignClient(name = "service-provider", contextId = "api", fallback = ProviderTwoFallBack.class)
 public interface IProviderTwo {
 
     @GetMapping("sayHello")

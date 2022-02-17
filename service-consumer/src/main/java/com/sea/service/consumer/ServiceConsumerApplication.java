@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.sea.service.consumer", "com.sea.provider.api.service"})
 @EnableDiscoveryClient
 //配置扫描的包,默认只扫描注解所在包的当前包及子包
 @EnableFeignClients(basePackages = {"com.sea.service.consumer.service", "com.sea.provider.api.service"})

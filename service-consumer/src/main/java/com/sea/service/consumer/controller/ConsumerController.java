@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.sea.provider.api.request.WorldRequest;
 import com.sea.provider.api.service.IProviderTwo;
 import com.sea.service.consumer.bean.User;
+import com.sea.service.consumer.service.ProvideThreeClient;
 import com.sea.service.consumer.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,9 @@ public class ConsumerController {
     @Autowired
     private IProviderTwo iProviderTwo;
 
+    @Autowired
+    private ProvideThreeClient provideThreeClient;
+
     @GetMapping("/hi-feign")
     public String hiFeign(@RequestParam(value = "name", required = false) String name) {
         return providerService.hi(name);
@@ -38,6 +42,11 @@ public class ConsumerController {
     @PostMapping("/sayWorld")
     public String sayWorld(@RequestBody WorldRequest request) {
         return iProviderTwo.sayWorld(request);
+    }
+
+    @GetMapping("/sayHelloThree")
+    public String sayHelloThree(@RequestParam(value = "name", required = false) String name) {
+        return provideThreeClient.sayHelloThree(name);
     }
 
     @GetMapping("/getProp")
