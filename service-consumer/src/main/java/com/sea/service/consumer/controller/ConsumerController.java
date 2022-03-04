@@ -3,6 +3,7 @@ package com.sea.service.consumer.controller;
 import com.alibaba.fastjson.JSON;
 import com.sea.provider.api.request.WorldRequest;
 import com.sea.provider.api.service.IProviderTwo;
+import com.sea.service.consumer.bean.DataBase;
 import com.sea.service.consumer.bean.User;
 import com.sea.service.consumer.service.ProvideThreeClient;
 import com.sea.service.consumer.service.ProviderService;
@@ -19,6 +20,10 @@ public class ConsumerController {
     private boolean useLocalCache;
 //    @Value("${prop2:default}")
 //    private String prop2;
+
+
+    @Autowired
+    private DataBase dataBase;
 
     @Autowired
     private ProviderService providerService;
@@ -62,5 +67,10 @@ public class ConsumerController {
     @PostMapping("/getJson")
     public String getProp(@RequestBody User user) {
         return user == null ? "" : JSON.toJSONString(user);
+    }
+
+    @GetMapping("/getDb")
+    public String getDbInfo() {
+        return dataBase.toString();
     }
 }
